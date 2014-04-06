@@ -1,20 +1,5 @@
 #!/usr/bin/env python
 
-"""MTS Balance.
-
-Usage:
-  mts.py --number=<phone-number> --password=<password>
-  mts.py (-h | --help)
-  mts.py --version
-
-Options:
-  -h --help                Show this screen.
-  --version                Show version.
-  --number=<phone-number>  Mobile number without 8 or +7 prefix.
-  --password=<password>    Password from personal profile at https://lk.ssl.mts.ru/
-
-"""
-
 import requests
 import re
 import anyjson
@@ -38,9 +23,3 @@ def get_balance(number, password):
 
     data = anyjson.deserialize(s.get('https://lk.ssl.mts.ru/ProfileStub/PAGet').content)
     return data.get('Balance')
-
-
-if __name__ == '__main__':
-    arguments = docopt(__doc__, version='MTS Balance 0.1.0')
-    print get_balance(arguments['--number'],
-                      arguments['--password'])

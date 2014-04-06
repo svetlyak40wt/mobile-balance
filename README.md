@@ -1,23 +1,22 @@
 Mobile Balance
 ==============
 
-Installation
-------------
+Установка
+---------
 
-Do as usual: `pip install mobile-balance`
+Делаем как обычно: `pip install mobile-balance`
 
-Usage
+Использование
 -----
 
-Specify mobile operator and credential from it's personal profile.
-For example:
+Указываем мобильного оператора, номер телефона и пароль от личного кабинета:
 
     $ mobile-balance mts --phone=9154041111 --password=to-secret-to-share
     196.513792
 
-Credits
--------
+Кому спасибо
+------------
 
-* Alexander Artemenko — for initial release.
+* Артеменко Александру — за первоначальный релиз
 
-Want to help? Send pull request!
+Хочешь помочь и попасть в список? Пришли pull-request!

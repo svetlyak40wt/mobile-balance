@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='mobile-balance',
-    version='0.1.1',
+    version='0.2.0',
     description='A set of utilities to retrive a balance from some Russian mobile operators.',
     author='Alexander Artemenko',
     author_email='svetlyak.40wt@gmail.com',

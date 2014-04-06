@@ -15,14 +15,12 @@ Options:
 
 """
 
-from mobile_balance import mts
+from mobile_balance import mts, megafon
 from docopt import docopt
 
-OPERATORS = dict(
-    mts=mts)
 
 def main():
-    arguments = docopt(__doc__, version='Mobile Balance 0.1.1')
-    mobile_operator = OPERATORS[arguments['<operator>']]
+    arguments = docopt(__doc__, version='Mobile Balance 0.2.0')
+    mobile_operator = globals()[arguments['<operator>']]
     print mobile_operator.get_balance(arguments['--phone'],
                                       arguments['--password'])
