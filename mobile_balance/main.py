@@ -15,7 +15,7 @@ Options:
 
 """
 
-from mobile_balance import mts, megafon
+from mobile_balance import mts, megafon, tele2
 from docopt import docopt
 
 
