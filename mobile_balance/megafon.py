@@ -1,6 +1,5 @@
 import requests
 import re
-import anyjson
 
 
 def get_balance(number, password):
@@ -18,4 +17,6 @@ def get_balance(number, password):
     content = s.get('https://lk.megafon.ru/').content
     match = re.search(r'<div class="[^"]*ui-label-balance".*?([\d,]+).*?</div>',
                       content)
-    return match.group(1).replace(',', '.')
+    
+    if match is not None:
+        return float(match.group(1).replace(',', '.'))

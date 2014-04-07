@@ -17,4 +17,4 @@ def get_balance(number, password):
     response = s.post('https://my.tele2.ru/balance/json',
         data={csrf_field: csrf_value, 'isBalanceRefresh': 'true'})
 
-    return response.json()['balance'].split()[0].replace(',', '.')
+    return float(response.json()['balance'].split()[0].replace(',', '.'))
