@@ -18,13 +18,13 @@ Mobile Balance
 
 Указываем мобильного оператора, номер телефона и пароль от личного кабинета:
 
-    $ mobile-balance mts --phone=9154041111 --password=to-secret-to-share
+    $ mobile-balance mts --phone=9154041111 --password=too-secret-to-share
     196.513792
 
 Кому спасибо
 ------------
 
 * [Артеменко Александру](https://github.com/svetlyak40wt) — за первоначальный релиз.
-* [Владимиру Улюпову](https://github.com/vaal-) — за поддержку TELE2.
+* [Владимиру Улупову](https://github.com/vaal-) — за поддержку TELE2.
 
 Хочешь помочь и попасть в список? Пришли pull-request!
