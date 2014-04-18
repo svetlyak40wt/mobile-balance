@@ -20,7 +20,7 @@ from docopt import docopt
 
 
 def main():
-    arguments = docopt(__doc__, version='Mobile Balance 0.3.1')
+    arguments = docopt(__doc__, version='Mobile Balance 0.3.2')
     mobile_operator = globals()[arguments['<operator>']]
     print mobile_operator.get_balance(arguments['--phone'],
                                       arguments['--password'])
