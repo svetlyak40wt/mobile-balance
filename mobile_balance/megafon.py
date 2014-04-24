@@ -15,8 +15,12 @@ def get_balance(number, password):
                         })
 
     content = s.get('https://lk.megafon.ru/').content
-    match = re.search(r'<div class="[^"]*ui-label-balance".*?((&minus;)?[\d,]+|[\d,]+).*?</div>',
+    match = re.search(r'<div class="[^"]*ui-label-balance".*?((&minus;)?\d[\d, ]*|\d[\d, ]*).*?</div>',
                       content)
     
     if match is not None:
-        return float(match.group(1).replace(',', '.').replace('&minus;', '-'))
+        text = match.group(1)
+        text = text.replace(' ', '') \
+                   .replace(',', '.') \
+                   .replace('&minus;', '-')
+        return float(text)
