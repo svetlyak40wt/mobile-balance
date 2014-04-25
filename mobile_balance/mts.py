@@ -3,12 +3,22 @@
 import requests
 import re
 
+from .exceptions import BadResponse
+from .utils import check_status_code
+
 
 def get_balance(number, password):
     session = requests.Session()
 
     response = session.get('https://login.mts.ru/amserver/UI/Login')
-    csrf_token = re.search(r'name="csrf.sign" value="(.*?)"', response.content).group(1)
+    check_status_code(response, 200)
+    
+    csrf_token = re.search(r'name="csrf.sign" value="(.*?)"', response.content)
+    
+    if csrf_token is None:
+        raise BadResponse('CSRF token not found', response)
+
+    csrf_token = csrf_token.group(1)
 
     response = session.post('https://login.mts.ru/amserver/UI/Login?service=lk&goto=https://lk.ssl.mts.ru/',
                       data={'IDToken1': number,
@@ -18,12 +28,14 @@ def get_balance(number, password):
                       headers={
                           'Accept-Language': 'ru,en;q=0.8',
                       })
-    assert response.status_code == 200
+    check_status_code(response, 200)
 
     response = session.get('https://lk.ssl.mts.ru/ProfileStub/PAGet')
-    assert response.status_code == 200
+    check_status_code(response, 200)
 
     data = response.json()
     balance = data.get('Balance')
-    if balance:
-        return float(balance)
+    if balance is None:
+        raise BadResponse('Unable to get balance from JSON', response)
+        
+    return float(balance)
