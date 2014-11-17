@@ -1,7 +1,7 @@
 Mobile Balance
 ==============
 
-[![ChangeLog](http://allmychanges.com/u/svetlyak40wt/python/mobile-balance/badge/)](http://allmychanges.com/u/svetlyak40wt/python/mobile-balance/)
+[![ChangeLog](http://allmychanges.com/p/python/mobile-balance/badge/)](http://allmychanges.com/p/python/mobile-balance/)
 
 Поддерживаемые операторы
 ------------------------
