@@ -2,7 +2,7 @@ Mobile Balance
 ==============
 
 Операторы частенько ломают ручки, через которые библиотека запрашивает состояние баланса.
-Посему приходится это чинить и публиковать багфиксы. Следите за обновлениями на AllMyChanges.com:
+Посему приходится это чинить и публиковать багфиксы. Следите за обновлениями на AllMyChanges.com:  
 [![ChangeLog](http://allmychanges.com/p/python/mobile-balance/badge/)](http://allmychanges.com/p/python/mobile-balance/)
 
 Поддерживаемые операторы
