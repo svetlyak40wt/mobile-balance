@@ -12,9 +12,9 @@ def get_balance(number, password):
 
     response = session.get('https://login.mts.ru/amserver/UI/Login')
     check_status_code(response, 200)
-    
+
     csrf_token = re.search(r'name="csrf.sign" value="(.*?)"', response.content)
-    
+
     if csrf_token is None:
         raise BadResponse('CSRF token not found', response)
 
@@ -30,12 +30,21 @@ def get_balance(number, password):
                       })
     check_status_code(response, 200)
 
-    response = session.get('https://lk.ssl.mts.ru/ProfileStub/PAGet')
+    response = session.get('https://oauth.mts.ru/webapi-1.4/customers/@me')
+
     check_status_code(response, 200)
 
     data = response.json()
-    balance = data.get('Balance')
+    relations = data['genericRelations']
+    targets = [rel['target'] for rel in relations]
+    accounts = [target for target in targets if target['@c'] == '.Account']
+
+    if not accounts:
+        raise RuntimeError('Account not found in the data response')
+
+    balance = accounts[0].get('balance')
+
     if balance is None:
         raise BadResponse('Unable to get balance from JSON', response)
-        
+
     return float(balance)
