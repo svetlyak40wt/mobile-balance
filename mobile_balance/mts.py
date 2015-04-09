@@ -11,7 +11,7 @@ def get_balance(number, password):
     session = requests.Session()
 
     response = session.get('https://login.mts.ru/amserver/UI/Login')
-    check_status_code(response, 200)
+    check_status_code(response, 401)
 
     csrf_token = re.search(r'name="csrf.sign" value="(.*?)"', response.content)
 
