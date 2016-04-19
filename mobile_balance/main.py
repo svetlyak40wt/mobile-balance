@@ -22,10 +22,12 @@ import time
 
 from mobile_balance import mts, megafon, tele2, exceptions
 from docopt import docopt
+from pkg_resources import get_distribution
 
 
 def main():
-    arguments = docopt(__doc__, version='Mobile Balance 0.4.0')
+    arguments = docopt(__doc__, version='Mobile Balance %s'
+                       % get_distribution('mobile_balance').version)
     operator_name = arguments['<operator>']
     mobile_operator = globals()[operator_name]
     try:
