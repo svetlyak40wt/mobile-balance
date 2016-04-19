@@ -20,7 +20,7 @@ import os
 import sys
 import time
 
-from mobile_balance import mts, megafon, tele2, exceptions
+from mobile_balance import mts, megafon, tele2, ttk, exceptions
 from docopt import docopt
 
 
