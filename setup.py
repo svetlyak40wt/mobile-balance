@@ -20,6 +20,9 @@ setup(
     install_requires=[
         'requests<2.3.0',
         'docopt<0.7.0',
+        'pyopenssl',
+        'ndg-httpsclient',
+        'pyasn1'
     ],
     license='BSD',
     zip_safe=True,
