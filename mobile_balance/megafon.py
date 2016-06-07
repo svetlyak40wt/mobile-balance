@@ -13,7 +13,7 @@ def get_balance(number, password):
     response = s.get('https://lk.megafon.ru/login/')
     check_status_code(response, 200)
     
-    csrf_token = re.search(r'name=CSRF value="(.*?)"', response.content)
+    csrf_token = re.search(r'name="CSRF" value="(.*?)"', response.content)
     
     if csrf_token is None:
         raise BadResponse('CSRF token not found', response)
