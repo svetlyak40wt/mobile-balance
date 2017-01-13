@@ -18,7 +18,7 @@ setup(
         ]
     },
     install_requires=[
-        'requests<2.3.0',
+        'requests',
         'docopt<0.7.0',
         'pyopenssl',
         'ndg-httpsclient',
