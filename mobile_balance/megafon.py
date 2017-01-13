@@ -12,12 +12,12 @@ def get_balance(number, password):
 
     response = s.get('https://lk.megafon.ru/login/')
     check_status_code(response, 200)
-    
+
     csrf_token = re.search(r'name="CSRF" value="(.*?)"', response.content)
-    
+
     if csrf_token is None:
         raise BadResponse('CSRF token not found', response)
-        
+
     csrf_token = csrf_token.group(1)
 
     response = s.post('https://lk.megafon.ru/dologin/',
@@ -26,24 +26,14 @@ def get_balance(number, password):
                             'CSRF': csrf_token,
                         })
     check_status_code(response, 200)
-    
+
     if u'Требуется ввод цифрового кода' in response.text:
         raise BadResponse('CAPTCHA was shown', response)
     if u'Как получить пароль' in response.text:
         raise BadResponse('Bad password or login', response)
 
-    response = s.get('https://lk.megafon.ru/')
+    response = s.get('https://lk.megafon.ru/pipes/lk/main/atourexpense')
     check_status_code(response, 200)
-    
-    content = response.content
-    match = re.search(r'<div class="[^"]*ui-label-balance".*?((&minus;)?\d[\d, ]*|\d[\d, ]*).*?</div>',
-                      content)
 
-    if match is None:
-        raise BadResponse('Balance not found', response)
-        
-    text = match.group(1)
-    text = text.replace(' ', '') \
-               .replace(',', '.') \
-               .replace('&minus;', '-')
-    return float(text)
+    data = response.json()
+    return data['balance']
