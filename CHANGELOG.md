@@ -1,3 +1,12 @@
+0.7.0 (2017-01-13)
+==================
+
+* Исправлено получение баланса у МТС ([#11](https://github.com/svetlyak40wt/mobile-balance/issues/11)).
+  За что спасибо @Ksardos!
+* Исправлено получение баланса у Мегафона ([#12](https://github.com/svetlyak40wt/mobile-balance/issues/12)).
+* Убрана явная зависимость от requests<2.3.0, по просьбе
+  [#14](https://github.com/svetlyak40wt/mobile-balance/issues/14) @drnextgis.
+
 0.6.0 (2016-06-07)
 ==================
 
