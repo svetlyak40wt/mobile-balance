@@ -14,16 +14,19 @@ def get_balance(number, password):
     check_status_code(response, 401)
 
     csrf_token = re.search(r'name="csrf.sign" value="(.*?)"', response.content)
+    csrf_ts_token = re.search(r'name="csrf.ts" value="(.*?)"', response.content) #Второй токен
 
     if csrf_token is None:
         raise BadResponse('CSRF token not found', response)
 
     csrf_token = csrf_token.group(1)
+    csrf_ts_token = csrf_ts_token.group(1) #Второй токен
 
     response = session.post('https://login.mts.ru/amserver/UI/Login?service=lk&goto=https://lk.ssl.mts.ru/',
                       data={'IDToken1': number,
                             'IDToken2': password,
                             'csrf.sign': csrf_token,
+                            'csrf.ts': csrf_ts_token, #Второй токен
                         },
                       headers={
                           'Accept-Language': 'ru,en;q=0.8',
