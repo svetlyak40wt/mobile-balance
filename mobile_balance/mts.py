@@ -23,7 +23,7 @@ def get_balance(number, password):
     csrf_token = csrf_token.group(1)
     csrf_ts_token = csrf_ts_token.group(1) #Второй токен
 
-    response = session.post('https://login.mts.ru/amserver/UI/Login?service=lk&goto=https://lk.ssl.mts.ru/',
+    response = session.post('https://login.mts.ru/amserver/UI/Login',
                       data={'IDToken1': number,
                             'IDToken2': password,
                             'csrf.sign': csrf_token,
