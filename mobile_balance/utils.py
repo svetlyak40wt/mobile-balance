@@ -20,9 +20,9 @@ def check_status_code(response, expected_code):
 def cleanup_phone_number(number):
     number_clean = re.sub(r'\D', '', number)
     if len(number_clean) == 11 and number_clean[0] != '7':
-        number_clean = '7{}'.format(number_clean[1:])
+        number_clean = '7{}' + number_clean[1:]
     elif len(number_clean) == 10:
-        number_clean = '7{}'.format(number_clean)
+        number_clean = '7{}' + number_clean
     if not re.match(r'^7\d{10}$', number_clean):
         raise ValueError('Incorrect phone number format. Must be 7XXXXXXXXXX')
     return number_clean
