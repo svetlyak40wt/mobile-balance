@@ -33,6 +33,7 @@ def get_balance(number, password):
         raise BadResponse('Bad password or login', response)
 
     response = s.get('https://lk.megafon.ru/api/lk/balance/get')
+
     check_status_code(response, 200)
 
     data = response.json()
