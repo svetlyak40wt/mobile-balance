@@ -32,7 +32,7 @@ def get_balance(number, password):
     if u'Как получить пароль' in response.text:
         raise BadResponse('Bad password or login', response)
 
-    response = s.get('https://lk.megafon.ru/pipes/lk/main/atourexpense')
+    response = s.get('https://lk.megafon.ru/api/lk/main/atourexpense')
     check_status_code(response, 200)
 
     data = response.json()
