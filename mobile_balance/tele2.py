@@ -13,19 +13,20 @@ def get_balance(number, password):
     # Only digits: <COUNTRY_CODE><ABC/DEF><PHONE_NUMBER>
     number = cleanup_phone_number(number)
 
-    response = s.get('https://login.tele2.ru/ssotele2/wap/auth/')
-    check_status_code(response, 200)
+    data = {"client_id": "digital-suite-web-app",
+            "grant_type": "password",
+            "username": number,
+            "password": password,
+            "password_type": "password",
+            }
+    response = s.post('https://my.tele2.ru/auth/realms/tele2-b2c/protocol/openid-connect/token', data=data)
 
-    match = re.search(r'value="(.*?)" name="_csrf"', response.content)
-    csrf_token = match.group(1)
-    if csrf_token is None:
-        raise BadResponse('CSRF token not found', response)
+    if not response.ok:
+        print(response, response.content)
+        raise ValueError('Authentication Failed')
 
-    data = dict(pNumber=number, password=password, _csrf=csrf_token, authBy='BY_PASS', rememberMe='true')
-    response = s.post(
-        'https://login.tele2.ru/ssotele2/wap/auth/submitLoginAndPassword',
-        data=data)
-    check_status_code(response, 200)
+    token = response.json()['access_token']
+    s.headers.update({'Authorization': 'Bearer {}'.format(token)})
 
     response = s.get('https://my.tele2.ru/api/subscribers/{}/balance'.format(number))
     check_status_code(response, 200)
