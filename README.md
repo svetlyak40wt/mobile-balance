@@ -19,6 +19,11 @@ Mobile Balance
 
 Делаем как обычно: `pip install mobile-balance`
 
+Установка из исходников
+---------
+
+`pip install .`
+
 Использование
 -----
 

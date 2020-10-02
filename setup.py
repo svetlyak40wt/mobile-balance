@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='mobile-balance',
-    version='0.9.0',
+    version='0.10.0',
     description='A set of utilities to retrive a balance from some Russian mobile operators.',
     author='Alexander Artemenko',
     author_email='svetlyak.40wt@gmail.com',
@@ -33,8 +33,8 @@ setup(
         'Natural Language :: English',
         'License :: OSI Approved :: BSD License',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
     ],
     keywords='mobile, balance, utility'
 )

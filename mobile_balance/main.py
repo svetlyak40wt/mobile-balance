@@ -31,10 +31,10 @@ def main():
     operator_name = arguments['<operator>']
     mobile_operator = globals()[operator_name]
     try:
-        print mobile_operator.get_balance(arguments['--phone'],
-                                          arguments['--password'])
-    except exceptions.BadResponse, e:
-        print >> sys.stderr, e
+        print(mobile_operator.get_balance(arguments['--phone'],
+                                          arguments['--password']))
+    except exceptions.BadResponse as e:
+        print(e, file=sys.stderr)
         bad_responses_dir = arguments['--bad-responses-dir']
         if bad_responses_dir:
             bad_responses_dir = os.path.join(bad_responses_dir,
