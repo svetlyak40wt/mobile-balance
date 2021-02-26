@@ -38,5 +38,6 @@ Mobile Balance
 * [Артеменко Александру](https://github.com/svetlyak40wt) — за первоначальный релиз.
 * [Владимиру Улупову](https://github.com/vaal-) — за поддержку TELE2.
 * [Денису Рыкову](https://github.com/drnextgis) - за поддержку ТрансТелеком и исправления TELE2.
+* [Максу Ефремову](https://github.com/Tmin10) - за поддержку Билайн и перевод на Python3.
 
 Хочешь помочь и попасть в список? Пришли pull-request!
