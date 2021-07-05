@@ -33,19 +33,26 @@ def get_balance(number, password):
                                 'CSRF': csrf_token,
                             })
         check_status_code(response, 200)
-    except:
-        print('Unable to login the Megafon site. Exiting!')
+    except: 
+        raise BadResponse('Unable to login the Megafon site. Exiting!', response)
     
     if u'Символы с картинки' in response.text:
-        raise BadResponse('CAPTCHA was shown', response)
+        raise 
     if u'Требуется ввод цифрового кода' in response.text:
         raise BadResponse('CAPTCHA was shown', response)
     if u'Как получить пароль' in response.text:
         raise BadResponse('Bad password or login', response)
+    
+    try:
+        response = s.get('https://lk.megafon.ru/api/lk/balance/get')
 
-    response = s.get('https://lk.megafon.ru/api/lk/balance/get')
-
-    check_status_code(response, 200)
-
+        check_status_code(response, 200)
+    
+    except: 
+        raise BadResponse('Unable to get Megafon balance', response)
     data = response.json()
+
+    if 'balance' not in data:
+        raise BadResponse('Unable to get Megafon balance', response)
     return data['balance']
+
