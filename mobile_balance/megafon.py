@@ -37,7 +37,7 @@ def get_balance(number, password):
         raise BadResponse('Unable to login the Megafon site. Exiting!', response)
     
     if u'Символы с картинки' in response.text:
-        raise 
+        raise BadResponse('CAPTCHA was shown', response)
     if u'Требуется ввод цифрового кода' in response.text:
         raise BadResponse('CAPTCHA was shown', response)
     if u'Как получить пароль' in response.text:
