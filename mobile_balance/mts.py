@@ -55,6 +55,21 @@ def get_balance(number, password):
         headers=headers,
         allow_redirects=False,
     )
+    check_status_code(response, 200)
+
+    csrf_token, csrf_ts_token = get_tokens(response)
+
+    response = session.post(
+        LOGIN_ENDPOINT,
+        data={
+            "IDButton": "Login",
+            "encoded": "false",
+            "csrf.sign": csrf_token,
+            "csrf.ts": csrf_ts_token,
+        },
+        headers=headers,
+        allow_redirects=False,
+    )
     check_status_code(response, 302)
 
     response = session.get("https://login.mts.ru/amserver/api/profile")
