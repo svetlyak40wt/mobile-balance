@@ -44,6 +44,19 @@ def get_balance(number, password):
     response = session.post(
         LOGIN_ENDPOINT,
         data={
+            "IDToken2": '{"screen":{"screenWidth":1920,"screenHeight":1080,"screenColourDepth":24},"platform":"Win32","language":"ru","timezone":{"timezone":-180},"plugins":{"installedPlugins":""},"fonts":{"installedFonts":"cursive;monospace;serif;sans-serif;default;Arial;Arial Black;Arial Narrow;Bookman Old Style;Bradley Hand ITC;Century;Century Gothic;Comic Sans MS;Courier;Courier New;Georgia;Impact;Lucida Console;Papyrus;Tahoma;Times;Times New Roman;Trebuchet MS;Verdana;"},"userAgent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:94.0) Gecko/20100101 Firefox/94.0","appName":"Netscape","appCodeName":"Mozilla","appVersion":"5.0 (Windows)","buildID":"20181001000000","oscpu":"Windows NT 6.1; Win64; x64","product":"Gecko","productSub":"20100101"}',
+            "csrf.sign": csrf_token,
+            "csrf.ts": csrf_ts_token,
+        },
+        headers=headers,
+    )
+    check_status_code(response, 200)
+
+    csrf_token, csrf_ts_token = get_tokens(response)
+
+    response = session.post(
+        LOGIN_ENDPOINT,
+        data={
             "IDToken1": number,
             "IDToken2": password,
             "IDButton": "Check",
