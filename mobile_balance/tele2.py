@@ -19,6 +19,7 @@ def get_balance(number, password):
             "password": password,
             "password_type": "password",
             }
+    s.headers.update({'Tele2-User-Agent': 'mytele2-app/5.11.0', 'User-Agent': 'okhttp/5.3.1' })
     response = s.post('https://my.tele2.ru/auth/realms/tele2-b2c/protocol/openid-connect/token', data=data)
 
     if not response.ok:
