@@ -20,7 +20,7 @@ def get_balance(number, password):
             "password_type": "password",
             }
     s.headers.update({'Tele2-User-Agent': 'mytele2-app/5.11.0', 'User-Agent': 'okhttp/5.3.1' })
-    response = s.post('https://my.tele2.ru/auth/realms/tele2-b2c/protocol/openid-connect/token', data=data)
+    response = s.post('https://spb.tele2.ru/auth/realms/tele2-b2c/protocol/openid-connect/token', data=data)
 
     if not response.ok:
         print(response, response.content)
@@ -29,7 +29,7 @@ def get_balance(number, password):
     token = response.json()['access_token']
     s.headers.update({'Authorization': 'Bearer {}'.format(token)})
 
-    response = s.get('https://my.tele2.ru/api/subscribers/{}/balance'.format(number))
+    response = s.get('https://spb.tele2.ru/api/subscribers/{}/balance'.format(number))
     check_status_code(response, 200)
 
     amount = response.json().get('data', {}).get('value', None)
