@@ -10,7 +10,7 @@ def check_status_code(response, expected_code):
         url = response.url
         method = response.request.method
 
-        raise BadResponse(('{method} to {url} resulted '
+        raise BadResponse((f'{method} to {url} resulted '
                            'in {result_code} status code '
                            'instead of {expected_code}').format(
             **locals()),
